@@ -78,3 +78,5 @@ $$v = \frac{\Delta X}{T} = \frac{\Delta u \cdot Z}{f_x \cdot T}$$
 
 ## Wnioski
 Eksperyment potwierdził skuteczność kalibracji metodą szachownicy w wyznaczaniu użytecznych parametrów optycznych układu. Otrzymane odległości (Etap 2) pokrywają się z celowymi założeniami pomiarowymi, a obliczenia z Etapu 3 obrazują zależność między odległością fotografowanego obiektu, czasem naświetlania a zjawiskiem rozmycia ruchu (*motion blur*).
+
+ss
