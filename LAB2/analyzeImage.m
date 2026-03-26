@@ -1,185 +1,44 @@
-img = imread('test.jpg');
+img = imread('test1.jpg');
 output = img;
 
-%% ===== GREEN =====
-[BW, ~] = segmentGreen(img);
-BW = cleanMask(BW);
-properties = analyzeRegions(BW);
+%% lista kolorów i funkcji
+colors = {
+    'green', @segGreen;
+    'red', @segRed;
+    'blue', @segBlue;
+    'yellow', @segYellow;
+    'pink', @segPink;
+    'grey', @segGrey;
+    'black', @segBlack;
+    'navy', @segNavy;
+    'white', @segWhite
+};
 
-for i = 1:length(properties)
+for k = 1:size(colors,1)
+
+    colorName = colors{k,1};
+    segmentFunc = colors{k,2};
     
-    if properties(i).Area < 200
-        continue;
+    [BW, ~] = segmentFunc(img);
+    BW = cleanMask(BW);
+    
+    properties = analyzeRegions(BW);
+    
+    for i = 1:length(properties)
+        
+        if properties(i).Area < 300
+            continue;
+        end
+        
+    shape = classifyShape(properties(i));
+        
+        label = [colorName ' ' shape];
+        
+        output = insertObjectAnnotation(output, ...
+            'rectangle', ...
+            properties(i).BoundingBox, ...
+            label);
     end
-    
-    c = properties(i).Circularity;
-    e = properties(i).Extent;
-    
-    if c > 0.9
-        shape = 'circle';
-    elseif e > 0.6
-        shape = 'square';
-    else
-        shape = 'other';
-    end
-    
-    label = ['green ' shape];
-    
-    output = insertObjectAnnotation(output, ...
-        'rectangle', ...
-        properties(i).BoundingBox, ...
-        label);
 end
 
-%% ===== RED =====
-[BW, ~] = segmentRed(img);
-BW = cleanMask(BW);
-properties = analyzeRegions(BW);
-
-for i = 1:length(properties)
-    
-    if properties(i).Area < 200
-        continue;
-    end
-    
-    c = properties(i).Circularity;
-    e = properties(i).Extent;
-    
-    if c > 0.9
-        shape = 'circle';
-    elseif e > 0.6
-        shape = 'square';
-    else
-        shape = 'other';
-    end
-    
-    label = ['red ' shape];
-    
-    output = insertObjectAnnotation(output, ...
-        'rectangle', ...
-        properties(i).BoundingBox, ...
-        label);
-end
-
-%% ===== BLUE =====
-[BW, ~] = segmentBlue(img);
-BW = cleanMask(BW);
-properties = analyzeRegions(BW);
-
-for i = 1:length(properties)
-    
-    if properties(i).Area < 200
-        continue;
-    end
-    
-    c = properties(i).Circularity;
-    e = properties(i).Extent;
-    
-    if c > 0.9
-        shape = 'circle';
-    elseif e > 0.6
-        shape = 'square';
-    else
-        shape = 'other';
-    end
-    
-    label = ['blue ' shape];
-    
-    output = insertObjectAnnotation(output, ...
-        'rectangle', ...
-        properties(i).BoundingBox, ...
-        label);
-end
-
-%% ===== BEIGE =====
-[BW, ~] = segmentBeige(img);
-BW = cleanMask(BW);
-properties = analyzeRegions(BW);
-
-for i = 1:length(properties)
-    
-    if properties(i).Area < 200
-        continue;
-    end
-    
-    c = properties(i).Circularity;
-    e = properties(i).Extent;
-    
-    if c > 0.9
-        shape = 'circle';
-    elseif e > 0.6
-        shape = 'square';
-    else
-        shape = 'other';
-    end
-    
-    label = ['beige ' shape];
-    
-    output = insertObjectAnnotation(output, ...
-        'rectangle', ...
-        properties(i).BoundingBox, ...
-        label);
-end
-
-%% ===== ORANGE =====
-[BW, ~] = segmentOrange(img);
-BW = cleanMask(BW);
-properties = analyzeRegions(BW);
-
-for i = 1:length(properties)
-    
-    if properties(i).Area < 200
-        continue;
-    end
-    
-    c = properties(i).Circularity;
-    e = properties(i).Extent;
-    
-    if c > 0.9
-        shape = 'circle';
-    elseif e > 0.6
-        shape = 'square';
-    else
-        shape = 'other';
-    end
-    
-    label = ['orange ' shape];
-    
-    output = insertObjectAnnotation(output, ...
-        'rectangle', ...
-        properties(i).BoundingBox, ...
-        label);
-end
-
-%% ===== GREY =====
-[BW, ~] = segmentGrey(img);
-BW = cleanMask(BW);
-properties = analyzeRegions(BW);
-
-for i = 1:length(properties)
-    
-    if properties(i).Area < 200
-        continue;
-    end
-    
-    c = properties(i).Circularity;
-    e = properties(i).Extent;
-    
-    if c > 0.9
-        shape = 'circle';
-    elseif e > 0.6
-        shape = 'square';
-    else
-        shape = 'other';
-    end
-    
-    label = ['grey ' shape];
-    
-    output = insertObjectAnnotation(output, ...
-        'rectangle', ...
-        properties(i).BoundingBox, ...
-        label);
-end
-
-%% ===== WYNIK =====
 imshow(output);

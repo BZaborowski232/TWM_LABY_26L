@@ -1,15 +1,13 @@
 function BW = cleanMask(BW)
 
-% Close mask with default
-radius = 25;
-decomposition = 0;
-se = strel('disk', radius, decomposition);
-BW = imclose(BW, se);
-
-% Open mask with disk
-radius = 2;
-decomposition = 0;
-se = strel('disk', radius, decomposition);
+se = strel('disk', 3);
 BW = imopen(BW, se);
+
+BW = imfill(BW, 'holes');
+
+BW = bwareaopen(BW, 300);
+
+se = strel('disk', 2);
+BW = imclose(BW, se);
 
 end
