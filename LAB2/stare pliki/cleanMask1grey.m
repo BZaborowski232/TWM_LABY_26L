@@ -1,4 +1,4 @@
-function [BW,maskedImage] = cleanMask(RGB,MASK)
+function [BW,maskedImage] = cleanMask1grey(RGB,MASK)
 
 % Create empty mask
 BW = false(size(RGB,1),size(RGB,2));

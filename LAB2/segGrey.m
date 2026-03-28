@@ -4,19 +4,19 @@ function [BW,maskedRGBImage] = segGrey(RGB)
 I = rgb2hsv(RGB);
 
 % Define thresholds for channel 1 based on histogram settings
-channel1Min = 0.719;
-channel1Max = 0.714;
+channel1Min = 0.271;
+channel1Max = 0.503;
 
 % Define thresholds for channel 2 based on histogram settings
-channel2Min = 0.000;
-channel2Max = 0.083;
+channel2Min = 0.012;
+channel2Max = 0.143;
 
 % Define thresholds for channel 3 based on histogram settings
-channel3Min = 0.359;
-channel3Max = 0.782;
+channel3Min = 0.651;
+channel3Max = 1.000;
 
 % Create mask based on chosen histogram thresholds
-sliderBW = ( (I(:,:,1) >= channel1Min) | (I(:,:,1) <= channel1Max) ) & ...
+sliderBW = (I(:,:,1) >= channel1Min ) & (I(:,:,1) <= channel1Max) & ...
     (I(:,:,2) >= channel2Min ) & (I(:,:,2) <= channel2Max) & ...
     (I(:,:,3) >= channel3Min ) & (I(:,:,3) <= channel3Max);
 BW = sliderBW;

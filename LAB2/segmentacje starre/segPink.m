@@ -1,18 +1,18 @@
-function [BW,maskedRGBImage] = segRed(RGB)
+function [BW,maskedRGBImage] = segPink(RGB)
 
 % Convert RGB image to chosen color space
 I = rgb2hsv(RGB);
 
 % Define thresholds for channel 1 based on histogram settings
-channel1Min = 0.992;
-channel1Max = 0.069;
+channel1Min = 0.816;
+channel1Max = 0.013;
 
 % Define thresholds for channel 2 based on histogram settings
-channel2Min = 0.359;
-channel2Max = 1.000;
+channel2Min = 0.310;
+channel2Max = 0.718;
 
 % Define thresholds for channel 3 based on histogram settings
-channel3Min = 0.000;
+channel3Min = 0.967;
 channel3Max = 1.000;
 
 % Create mask based on chosen histogram thresholds
