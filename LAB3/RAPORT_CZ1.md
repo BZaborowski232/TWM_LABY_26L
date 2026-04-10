@@ -10,137 +10,6 @@
 Otrzymaliśmy następujące wyniki po uruchomieniu skryptu zadania 1:
 
 ```
->> 
-
-display =
-
-    'Iter'
-
-                                                        First-order 
- Iteration  Func-count       f(x)        Step-size       optimality
-     0          94          1.13636                         0.103
-     1         188          1.11755              1         0.0654  
-     2         282          1.09284              1         0.0171  
-     3         376           1.0834              1         0.0266  
-     4         470         0.987007              1          0.116  
-     5         564         0.845408              1          0.163  
-     6         658         0.622673              1           0.15  
-     7         752         0.475173              1          0.108  
-     8         846         0.392712              1         0.0748  
-     9         940         0.343098              1         0.0496  
-    10        1034          0.31708              1         0.0315  
-    11        1128         0.305833              1         0.0191  
-    12        1222         0.302117              1         0.0112  
-    13        1316         0.300872              1        0.00649  
-    14        1410         0.299959              1        0.00282  
-    15        1504         0.298907              1        0.00271  
-    16        1598         0.298133              1        0.00418  
-    17        1692         0.297739              1        0.00344  
-    18        1786         0.297531              1        0.00256  
-    19        1880         0.297162              1        0.00252  
-                                                        First-order 
- Iteration  Func-count       f(x)        Step-size       optimality
-    20        1974          0.29617              1        0.00628  
-    21        2068         0.293796              1         0.0146  
-    22        2162         0.287975              1         0.0279  
-    23        2256         0.274786              1         0.0447  
-    24        2350         0.249722              1         0.0573  
-    25        2444         0.220573              1         0.0504  
-    26        2538         0.198537              1         0.0305  
-    27        2632         0.189145              1         0.0115  
-    28        2726         0.187591              1        0.00401  
-    29        2820         0.187258              1         0.0012  
-    30        2914         0.187178              1        0.00119  
-    31        3008          0.18712              1        0.00119  
-    32        3102          0.18702              1        0.00122  
-    33        3196         0.186854              1         0.0023  
-    34        3290         0.186554              1        0.00367  
-    35        3384         0.185959              1        0.00535  
-    36        3478         0.184611              1        0.00751  
-    37        3572         0.181398              1         0.0102  
-    38        3666         0.174063              1         0.0129  
-    39        3760         0.160303              1         0.0126  
-                                                        First-order 
- Iteration  Func-count       f(x)        Step-size       optimality
-    40        3854         0.145654              1        0.00698  
-    41        3948         0.139084              1        0.00234  
-    42        4042         0.136967              1       0.000709  
-    43        4136         0.136543              1       0.000647  
-    44        4230         0.136482              1       0.000635  
-    45        4324         0.136447              1       0.000627  
-    46        4418         0.136368              1       0.000635  
-    47        4512         0.136227              1       0.000945  
-    48        4606         0.135955              1        0.00188  
-    49        4700         0.135451              1        0.00305  
-    50        4794         0.134453              1        0.00444  
-    51        4888         0.132347              1        0.00605  
-    52        4982           0.1277              1        0.00772  
-    53        5076          0.11836              1        0.00835  
-    54        5170          0.10648              1        0.00581  
-    55        5264         0.093794              1        0.00424  
-    56        5358        0.0847259              1        0.00288  
-    57        5452        0.0832639              1        0.00205  
-    58        5546        0.0830303              1        0.00132  
-    59        5640        0.0829513              1       0.000671  
-                                                        First-order 
- Iteration  Func-count       f(x)        Step-size       optimality
-    60        5734         0.082916              1       0.000527  
-    61        5828         0.082888              1       0.000512  
-    62        5922        0.0828433              1       0.000766  
-    63        6016        0.0827609              1        0.00138  
-    64        6110        0.0826046              1        0.00206  
-    65        6204        0.0822975              1        0.00266  
-    66        6298         0.081656              1        0.00304  
-    67        6392        0.0802636              1        0.00417  
-    68        6486        0.0772412              1        0.00485  
-    69        6580        0.0710355              1        0.00765  
-    70        6674        0.0602744              1        0.00837  
-    71        6768        0.0479473              1        0.00572  
-    72        6862        0.0410886              1        0.00381  
-    73        6956        0.0386297              1        0.00312  
-    74        7050        0.0371314              1        0.00258  
-    75        7144        0.0362267              1         0.0024  
-    76        7238        0.0357349              1        0.00203  
-    77        7332        0.0354589              1        0.00153  
-    78        7426        0.0352965              1          0.001  
-    79        7520        0.0352053              1       0.000518  
-                                                        First-order 
- Iteration  Func-count       f(x)        Step-size       optimality
-    80        7614        0.0351615              1        0.00025  
-    81        7708        0.0351407              1       0.000257  
-    82        7802         0.035128              1        0.00026  
-    83        7896        0.0351182              1        0.00026  
-    84        7990         0.035108              1        0.00026  
-    85        8084        0.0350966              1        0.00026  
-    86        8178        0.0350829              1       0.000289  
-    87        8272        0.0350639              1       0.000296  
-    88        8366        0.0350378              1       0.000258  
-    89        8460        0.0350051              1       0.000251  
-    90        8554        0.0349639              1       0.000465  
-    91        8648        0.0348973              1       0.000712  
-    92        8742        0.0347557              1        0.00115  
-    93        8836        0.0344121              1        0.00194  
-    94        8930        0.0335258              1         0.0032  
-    95        9024        0.0312928              1         0.0049  
-    96        9118        0.0265993              1        0.00537  
-    97        9212         0.020227              1         0.0026  
-    98        9306        0.0151038              1        0.00127  
-    99        9400        0.0103474              1        0.00101  
-                                                        First-order 
- Iteration  Func-count       f(x)        Step-size       optimality
-   100        9494       0.00625977              1       0.000681  
-   101        9588       0.00347993              1       0.000517  
-   102        9682       0.00186225              1       0.000316  
-   103        9776      0.000972597              1       0.000179  
-   104        9870      0.000502953              1        0.00011  
-   105        9964      0.000258708              1       6.37e-05  
-   106       10058      0.000132717              1       3.57e-05  
-   107       10152      6.79102e-05              1       1.96e-05  
-   108       10246      3.46408e-05              1       1.05e-05  
-   109       10340      1.76737e-05              1       5.57e-06  
-   110       10434      8.99949e-06              1        3.2e-06  
-   111       10528      4.61053e-06              1       1.83e-06  
-   112       10622      2.25801e-06              1        9.9e-07  
 
 Local minimum found.
 
@@ -151,9 +20,10 @@ the value of the optimality tolerance.
 Accuracy train: 100.000000
 Accuracy test: 85.555556
 >> 
+
 ```
 
-Model regresji logistycznej osiągnął skuteczność 100% na zbiorze uczącym oraz 85.56% na zbiorze testowym. Oznacza to, że model bardzo dobrze dopasował się do danych treningowych, jednak jego skuteczność na nowych danych jest niższa, co wskazuje na lekkie przeuczenie (overfitting). Mimo tego model zachowuje dobrą zdolność generalizacji i poprawnie klasyfikuje większość obrazów.
+Model regresji logistycznej osiągnął skuteczność 100% na zbiorze uczącym oraz 85.56% na zbiorze testowym. Oznacza to, że model bardzo dobrze dopasował się do danych treningowych, jednak jego skuteczność na nowych danych jest niższa, co wskazuje na lekkie przeuczenie. Mimo tego model zachowuje dobrą zdolność generalizacji i poprawnie klasyfikuje większość obrazów.
 
 
 
@@ -202,3 +72,9 @@ Po uruchomieniu skryptu dla zadania 4 otrzymaliśmy nastepujace wykresy:
 ![Odch. stand. skuteczności vs liczba cech](CZ1_WYKRESY/ZAD4_2.png)
 
 Z analizy wykresu funkcji kosztu jasno wynika, że optymalnym momentem na wczesne zatrzymanie jest około 28 iteracja. To w tym punkcie błąd walidacyjny osiąga minimum, po czym zaczyna rosnąć, co sugeruje zjawisko przeuczenia modelu. Przerwanie nauki w tej iteracji pozwala na zachowanie najlepszej zdolności do generalizacji, co przełożyło się na skuteczność rzędu 85.5% na zbiorze testowym.
+
+
+
+### Zadanie 5 
+
+Tutaj najlepiej analizowac wykrews funkcji kosztu
