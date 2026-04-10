@@ -153,7 +153,7 @@ Accuracy test: 85.555556
 >> 
 ```
 
-Model regresji logistycznej osiągnął skuteczność **100% na zbiorze uczącym** oraz **85.56% na zbiorze testowym**. Oznacza to, że model bardzo dobrze dopasował się do danych treningowych, jednak jego skuteczność na nowych danych jest niższa, co wskazuje na **lekkie przeuczenie (overfitting)**. Mimo tego model zachowuje dobrą zdolność generalizacji i poprawnie klasyfikuje większość obrazów.
+Model regresji logistycznej osiągnął skuteczność 100% na zbiorze uczącym oraz 85.56% na zbiorze testowym. Oznacza to, że model bardzo dobrze dopasował się do danych treningowych, jednak jego skuteczność na nowych danych jest niższa, co wskazuje na lekkie przeuczenie (overfitting). Mimo tego model zachowuje dobrą zdolność generalizacji i poprawnie klasyfikuje większość obrazów.
 
 
 
@@ -180,6 +180,19 @@ Analiza wykresów odchylenia standardowego potwierdziła zjawisko przeuczenia. P
 
 ### Zadanie 3
 
+Po wykonaniu skryptu do zadania 3 otrzymujemy następujące wykresy:
+
+![Odch. stand. skuteczności vs liczba cech](CZ1_WYKRESY/ZAD3_1.png)
+
+![Odch. stand. skuteczności vs liczba cech](CZ1_WYKRESY/ZAD3_3.png)
+
+![Odch. stand. skuteczności vs liczba cech](CZ1_WYKRESY/ZAD3_2.png)
+
+![Odch. stand. skuteczności vs liczba cech](CZ1_WYKRESY/ZAD3_4.png)
+
+Po przeanalizowaniu wykresów, możemy zauważyc, że wraz ze wzrostem wielkości zbioru uczącego, funkcja kosztu dla zbioru walidacyjnego maleje, a dla treningowego rośnie, co powoduje zbieganie się obu wykresów. Przy małej liczbie próbek model dosyć łatwo sie ich uczy (co widzimy po niskim błędzie treningowym), ale nie potrafi uogólnić tej wiedzy gdy pojawiają się bardziej różnorodne przypadki. Gdy dodawane są nowe, różne obrazki, koszt treningowy rośnie, bo modelowi ciężko jest idealnie dopasować się do każdego z nich. Natomiast większa ilość danych zmusza algorytm do odkrywania bardziej uniwersalnych wzorców dla poszczególnych klas. Dzięki temu model zyskuje na stabilności i znacznie lepiej radzi sobie z rozpoznawaniem obrazów, których wcześniej nie widział, co ostatecznie obniża koszt walidacyjny. 
+Ponadto zauważalnie maleje odchylenie standardowe skuteczności walidacyjnej, co świadczy o rosnącej stabilności modelu. Jednoczesne zatrzymanie się skuteczności walidacyjnej na niskim poziomie i wysoki koszt końcowy mogą wskazywać na zjawisko niedouczenia. Przy zaledwie 5 użytych cechach model jest zbyt mało złożony, by w pełni wykorzystać potencjał większej liczby danych. 
 
 
+### Zadanie 4
 
