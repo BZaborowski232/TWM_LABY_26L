@@ -158,3 +158,28 @@ Model regresji logistycznej osiągnął skuteczność **100% na zbiorze uczącym
 
 
 ### Zadanie 2
+
+Po uruchomieniu skryptu do zadania 2 otrzymujemy medzy innymi nastepujace wytkresy:
+
+![F. kosztu vs Liczba cech](CZ1_WYKRESY/ZAD2_1.png)
+
+![Skuteczność vs Liczba cech](CZ1_WYKRESY/ZAD2_3.png)
+
+
+Po przeanalizowaniu wykresów oraz po przeprowadzeniu eksperymentów, dochodzimy do wniosku, że wraz ze wzrostem liczby cech funkcja kosztu dla zbioru uczącego stale maleje, a skuteczność dąży do 100%. Skuteczność treningowa dociera do 100%, podczas gdy walidacyjna po osiągnięciu około 85% przy kilkunastu cechach zaczyna falować, a dystans między obiema liniami staje się ogromny. Dla zbioru walidacyjnego funkcja kosztu osiąga minimum dla 14 cech, po czym gwałtownie rośnie, co świadczy o silnym przeuczeniu modelu przy zbyt dużej liczbie wymiarów (spadek zdolności generalizacji). W związku z tym optymalnym wyborem dla tego scenariusza jest ograniczenie modelu do 14 cech.
+
+Generowane były również wykresy odchylenia standardowego:
+
+![Odch. stand. F. kosztu vs liczba cech](CZ1_WYKRESY/ZAD2_2.png)
+
+![Odch. stand. skuteczności vs liczba cech](CZ1_WYKRESY/ZAD2_4.png)
+
+
+Analiza wykresów odchylenia standardowego potwierdziła zjawisko przeuczenia. Podczas gdy dla zbioru uczącego odchylenie jest niemal zerowe (model jest stabilny), na zbiorze walidacyjnym po przekroczeniu 14 cech obserwujemy drastyczny wzrost niestabilności (ogromne skoki wariancji funkcji kosztu). Potwierdza to ogromnej wrażliwości przeuczonego modelu na to, jak dokładnie podzielono dane.
+
+
+### Zadanie 3
+
+
+
+
