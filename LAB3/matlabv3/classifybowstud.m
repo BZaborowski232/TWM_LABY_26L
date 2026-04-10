@@ -31,7 +31,7 @@ words_cnt = 30 ;
 % Pełny zbiór dostępny jest na stronie autorów: <http://web.mit.edu/torralba/www/indoor.html 
 % http://web.mit.edu/torralba/www/indoor.html>
 
-imds_full = imageDatastore("indoor/indoorCVPR_09/Images/", "IncludeSubfolders", true, "LabelSource", "foldernames");
+imds_full = imageDatastore("indoor_images/", "IncludeSubfolders", true, "LabelSource", "foldernames");
 %countEachLabel(imds_full)
 
 % Wybór przykładowych klas i podział na zbiór treningowy i testowy
