@@ -312,7 +312,7 @@ ylabel('Skuteczność') ;
 legend('Zb. treningowy','Zb. walidacyjny') ;
 
 % Wyniki dla zbioru uczącego
-sel_iter = 1 % Do wypełnienia w ramach zadania 
+sel_iter = 28 % Do wypełnienia w ramach zadania 
 pred = hfun1(Ws(:,:,sel_iter),featurestrain) ;
 acc = getAccuracy(pred,labelstrain) * 100 ;
 

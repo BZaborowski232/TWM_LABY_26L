@@ -182,16 +182,23 @@ Analiza wykresów odchylenia standardowego potwierdziła zjawisko przeuczenia. P
 
 Po wykonaniu skryptu do zadania 3 otrzymujemy następujące wykresy:
 
-![Odch. stand. skuteczności vs liczba cech](CZ1_WYKRESY/ZAD3_1.png)
+![](CZ1_WYKRESY/ZAD3_1.png)
 
-![Odch. stand. skuteczności vs liczba cech](CZ1_WYKRESY/ZAD3_3.png)
+![](CZ1_WYKRESY/ZAD3_3.png)
 
-![Odch. stand. skuteczności vs liczba cech](CZ1_WYKRESY/ZAD3_2.png)
+![](CZ1_WYKRESY/ZAD3_2.png)
 
-![Odch. stand. skuteczności vs liczba cech](CZ1_WYKRESY/ZAD3_4.png)
+![](CZ1_WYKRESY/ZAD3_4.png)
 
 Widzimy, że wraz ze wzrostem ilości danych wykresy funkcji kosztu zbiegają się, błąd treningowy rośnie, a walidacyjny maleje. Wynika to z faktu, że na małym zbiorze model łatwo uczy się obrazków na pamięć, natomiast duża ilość danych zmusza go do szukania ogólnych, uniwersalnych reguł (co potwierdza też spadające odchylenie standardowe). Ostatecznie jednak niska skuteczność i wysoki koszt końcowy wskazują na zjawisko niedouczenia. Model bazujący 5 cechach jest zbyt prosty, by w pełni skorzystać z dużej liczby obrazków.
 
 
 ### Zadanie 4
 
+Po uruchomieniu skryptu dla zadania 4 otrzymaliśmy nastepujace wykresy:
+
+![Odch. stand. skuteczności vs liczba cech](CZ1_WYKRESY/ZAD4_1.png)
+
+![Odch. stand. skuteczności vs liczba cech](CZ1_WYKRESY/ZAD4_2.png)
+
+Z analizy wykresu funkcji kosztu jasno wynika, że optymalnym momentem na wczesne zatrzymanie jest około 28 iteracja. To w tym punkcie błąd walidacyjny osiąga minimum, po czym zaczyna rosnąć, co sugeruje zjawisko przeuczenia modelu. Przerwanie nauki w tej iteracji pozwala na zachowanie najlepszej zdolności do generalizacji, co przełożyło się na skuteczność rzędu 85.5% na zbiorze testowym.
