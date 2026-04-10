@@ -190,8 +190,7 @@ Po wykonaniu skryptu do zadania 3 otrzymujemy następujące wykresy:
 
 ![Odch. stand. skuteczności vs liczba cech](CZ1_WYKRESY/ZAD3_4.png)
 
-Po przeanalizowaniu wykresów, możemy zauważyc, że wraz ze wzrostem wielkości zbioru uczącego, funkcja kosztu dla zbioru walidacyjnego maleje, a dla treningowego rośnie, co powoduje zbieganie się obu wykresów. Przy małej liczbie próbek model dosyć łatwo sie ich uczy (co widzimy po niskim błędzie treningowym), ale nie potrafi uogólnić tej wiedzy gdy pojawiają się bardziej różnorodne przypadki. Gdy dodawane są nowe, różne obrazki, koszt treningowy rośnie, bo modelowi ciężko jest idealnie dopasować się do każdego z nich. Natomiast większa ilość danych zmusza algorytm do odkrywania bardziej uniwersalnych wzorców dla poszczególnych klas. Dzięki temu model zyskuje na stabilności i znacznie lepiej radzi sobie z rozpoznawaniem obrazów, których wcześniej nie widział, co ostatecznie obniża koszt walidacyjny. 
-Ponadto zauważalnie maleje odchylenie standardowe skuteczności walidacyjnej, co świadczy o rosnącej stabilności modelu. Jednoczesne zatrzymanie się skuteczności walidacyjnej na niskim poziomie i wysoki koszt końcowy mogą wskazywać na zjawisko niedouczenia. Przy zaledwie 5 użytych cechach model jest zbyt mało złożony, by w pełni wykorzystać potencjał większej liczby danych. 
+Widzimy, że wraz ze wzrostem ilości danych wykresy funkcji kosztu zbiegają się, błąd treningowy rośnie, a walidacyjny maleje. Wynika to z faktu, że na małym zbiorze model łatwo uczy się obrazków na pamięć, natomiast duża ilość danych zmusza go do szukania ogólnych, uniwersalnych reguł (co potwierdza też spadające odchylenie standardowe). Ostatecznie jednak niska skuteczność i wysoki koszt końcowy wskazują na zjawisko niedouczenia. Model bazujący 5 cechach jest zbyt prosty, by w pełni skorzystać z dużej liczby obrazków.
 
 
 ### Zadanie 4
