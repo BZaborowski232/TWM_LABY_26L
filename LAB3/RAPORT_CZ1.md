@@ -86,7 +86,9 @@ W celu dokładnej lokalizacji optymalnego współczynnika regularyzacji, zagęsz
 
 ![](CZ1_WYKRESY/ZAD5_5_PoZmianieZakresu.png)
 
- Na podstawie analizy wykresów, a w szczególności poszukując globalnego minimum funkcji kosztu dla zbioru walidacyjnego, wybraliśmy jako optymalny parametr λ = 0.002. Taka wartość regularyzacji optymalnie karze model za zbyt duże wagi, uodparniając go na przeuczenie, a jednocześnie nie prowadzi do zjawiska niedouczenia.
+ Na podstawie analizy wykresów, a w szczególności poszukując globalnego minimum funkcji kosztu dla zbioru walidacyjnego, wybraliśmy jako optymalny parametr λ = 0.0025. Taka wartość regularyzacji optymalnie karze model za zbyt duże wagi, uodparniając go na przeuczenie, a jednocześnie nie prowadzi do zjawiska niedouczenia.
 
 
  ### Zadanie 6
+
+Po ponownym wytrenowaniu modelu na pełnym zbiorze uczącym z użyciem optymalnego współczynnika regularyzacji (λ=0.0025), klasyfikator osiągnął 97.14% skuteczności treningowej oraz 86.67% skuteczności testowej. Możemy zauważyć, że spadek skuteczności na zbiorze treningowym przyniósł pożądaną korzyść, w postaci najwyższego dotąd wyniku na zbiorze testowym. Udowadnia to, że regularyzacja L2 z odpowiednio dobranym parametrem skutecznie ograniczyła przeuczenie i poprawiła zdolność modelu do uogólniania wiedzy na nowych danych.

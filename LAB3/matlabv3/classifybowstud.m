@@ -407,7 +407,7 @@ legend('Zb. treningowy','Zb. walidacyjny') ;
 close all ;
 rng('default') ;
 
-lambda = 0 % Do wypełnienia w ramach zadania
+lambda = 0.0025 % Do wypełnienia w ramach zadania
 featurestrain = file_hist ;
 featurestrain = [featurestrain, ones(size(featurestrain,1),1)] ;
 [W, cost] = trainsimple(featurestrain, imds.Labels, lambda) ;
