@@ -67,9 +67,9 @@ Widzimy, że wraz ze wzrostem ilości danych wykresy funkcji kosztu zbiegają si
 
 Po uruchomieniu skryptu dla zadania 4 otrzymaliśmy nastepujace wykresy:
 
-![Odch. stand. skuteczności vs liczba cech](CZ1_WYKRESY/ZAD4_1.png)
+![](CZ1_WYKRESY/ZAD4_1.png)
 
-![Odch. stand. skuteczności vs liczba cech](CZ1_WYKRESY/ZAD4_2.png)
+![](CZ1_WYKRESY/ZAD4_2.png)
 
 Z analizy wykresu funkcji kosztu jasno wynika, że optymalnym momentem na wczesne zatrzymanie jest około 28 iteracja. To w tym punkcie błąd walidacyjny osiąga minimum, po czym zaczyna rosnąć, co sugeruje zjawisko przeuczenia modelu. Przerwanie nauki w tej iteracji pozwala na zachowanie najlepszej zdolności do generalizacji, co przełożyło się na skuteczność rzędu 85.5% na zbiorze testowym.
 
@@ -77,4 +77,16 @@ Z analizy wykresu funkcji kosztu jasno wynika, że optymalnym momentem na wczesn
 
 ### Zadanie 5 
 
-Tutaj najlepiej analizowac wykrews funkcji kosztu
+Po uruchomieniu skryptu otrzymalismy miedzy innymi wykres funkcji kosztu w stosunku do lambdy:
+
+![](CZ1_WYKRESY/ZAD5_1.png)
+
+
+W celu dokładnej lokalizacji optymalnego współczynnika regularyzacji, zagęszczono siatkę przeszukiwania do przedziału od 10^−4 do 10^2. Wykres zmienił się w następujący sposób:
+
+![](CZ1_WYKRESY/ZAD5_5_PoZmianieZakresu.png)
+
+ Na podstawie analizy wykresów, a w szczególności poszukując globalnego minimum funkcji kosztu dla zbioru walidacyjnego, wybraliśmy jako optymalny parametr λ = 0.002. Taka wartość regularyzacji optymalnie karze model za zbyt duże wagi, uodparniając go na przeuczenie, a jednocześnie nie prowadzi do zjawiska niedouczenia.
+
+
+ ### Zadanie 6
