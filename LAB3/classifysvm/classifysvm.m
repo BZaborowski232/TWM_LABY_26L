@@ -30,7 +30,7 @@ words_cnt = 30 ;
 % Pełny zbiór dostępny jest na stronie autorów: <http://web.mit.edu/torralba/www/indoor.html 
 % http://web.mit.edu/torralba/www/indoor.html>
 
-imds_full = imageDatastore("indoor_images/", "IncludeSubfolders", true, "LabelSource", "foldernames");
+imds_full = imageDatastore("../indoor_images/", "IncludeSubfolders", true, "LabelSource", "foldernames");
 %countEachLabel(imds_full)
 
 % Wybór przykładowych klas i podział na zbiór treningowy i testowy
@@ -88,23 +88,91 @@ for i=1:length(imtest.Files)
     test_hist(i,:) = wordHist(feats, words);
 end
 
-%% SVM - przykład
-% Uczenie wieloklasowego klasyfikatora SVM o parametrach C i gamma.
-% Rozpoznawanie wielu klas opiera się na regule one-vs-one
-C = 0.1 ;
-gamma = 0.1 ;
-temp = templateSVM('KernelFunction', 'gaussian', 'BoxConstraint', C, 'KernelScale', gamma) ;
-model = fitcecoc(file_hist, imds.Labels, 'Learners', temp) ;
-train_err = loss(model, file_hist, imds.Labels, 'Lossfun', 'classiferror') ;
-test_err = loss(model, test_hist, imtest.Labels, 'Lossfun', 'classiferror') ;
-fprintf(1,'train_acc: %f, test_acc: %f\n', 1-train_err, 1-test_err) ;
+%% Część 2: Klasyfikator SVM - Grid Search i optymalizacja
+close all;
+rng('default');
 
-% Kroswalidacja klasyfikatora w podziale na zbioru 4:1
-modelcv = crossval(model, 'KFold', 5) ; % Model 'kroswalidowany'
-modelcv.Trained % Model 'kroswalidowany' zawiera w sobie faktycznie 5 modeli - każdy uczony przy innym podziale zbioru
-cv_err = kfoldLoss(modelcv) ; % Zagregowany błąd kroswalidacji
-fprintf(1,'cross_validation_accuracy: %f\n', 1-cv_err) ;
+% Definicja siatki hiperparametrów
+C_vals = logspace(-1, 2, 5); % np. od 0.1 do 100
+gamma_vals = logspace(-2, 1, 5); % np. od 0.01 do 10
+k = 5; % 5-krotna walidacja krzyżowa (k-fold)
 
+accuracy_matrix = zeros(length(C_vals), length(gamma_vals));
+
+fprintf('Rozpoczynam przeszukiwanie siatki (Grid Search). To może chwilę potrwać...\n');
+for i = 1:length(C_vals)
+    for j = 1:length(gamma_vals)
+        C = C_vals(i);
+        gamma = gamma_vals(j);
+        
+        % Definicja szablonu SVM z jądrem RBF (gaussowskim)
+        t = templateSVM('KernelFunction', 'gaussian', 'BoxConstraint', C, 'KernelScale', gamma);
+        
+        % Uczenie modelu ECOC (wieloklasowego za pomocą SVM one-vs-one)
+        model = fitcecoc(file_hist, imds.Labels, 'Learners', t);
+        
+        % Walidacja krzyżowa w celu oceny tego zestawu parametrów
+        modelcv = crossval(model, 'KFold', k);
+        cv_err = kfoldLoss(modelcv);
+        
+        % Zapisanie wyniku (1 - błąd = skuteczność)
+        accuracy_matrix(i, j) = 1 - cv_err;
+    end
+end
+
+% Znalezienie najlepszych parametrów na podstawie walidacji krzyżowej
+[max_acc, max_idx] = max(accuracy_matrix(:));
+[best_i, best_j] = ind2sub(size(accuracy_matrix), max_idx);
+best_C = C_vals(best_i);
+best_gamma = gamma_vals(best_j);
+
+fprintf('\nNajlepsze parametry: C = %.3f, Gamma = %.3f\nSkuteczność walidacyjna (CV) = %.2f%%\n', best_C, best_gamma, max_acc*100);
+
+%% Wykres 3D przestrzeni hiperparametrów
+figure;
+[X, Y] = meshgrid(gamma_vals, C_vals);
+surf(X, Y, accuracy_matrix * 100);
+set(gca, 'XScale', 'log', 'YScale', 'log');
+xlabel('Gamma (\gamma)');
+ylabel('C (BoxConstraint)');
+zlabel('Skuteczność CV (%)');
+title('Skuteczność SVM w zależności od parametrów C i \gamma');
+colorbar;
+
+%% Testowanie najlepszego wyznaczonego modelu na ZBIORZE TESTOWYM
+final_t = templateSVM('KernelFunction', 'gaussian', 'BoxConstraint', best_C, 'KernelScale', best_gamma);
+final_model = fitcecoc(file_hist, imds.Labels, 'Learners', final_t);
+
+predicted_labels = predict(final_model, test_hist);
+
+% Generowanie macierzy pomyłek
+figure;
+cm = confusionchart(imtest.Labels, predicted_labels);
+title('Macierz pomyłek - Zoptymalizowany SVM');
+
+% Obliczanie metryk
+conf_mat = cm.NormalizedValues; % Pobranie wartości liczbowych z macierzy
+
+% Mikro-uśredniona skuteczność (zwykłe 'Accuracy' dla całego zbioru)
+micro_acc = sum(diag(conf_mat)) / sum(conf_mat(:));
+
+% Makro-uśredniona skuteczność (średnia czułość dla klas)
+sensitivities = diag(conf_mat) ./ sum(conf_mat, 2);
+macro_acc = mean(sensitivities);
+
+fprintf('\nWyniki na zbiorze testowym:\n');
+fprintf('Mikro-uśredniona skuteczność (Micro-Accuracy): %.2f%%\n', micro_acc * 100);
+fprintf('Makro-uśredniona skuteczność (Macro-Accuracy): %.2f%%\n', macro_acc * 100);
+
+%% Automatyczna optymalizacja za pomocą wbudowanych narzędzi MATLABa
+fprintf('\nPorównanie: Rozpoczynam automatyczną optymalizację MATLABa...\n');
+auto_t = templateSVM('KernelFunction', 'gaussian');
+auto_model = fitcecoc(file_hist, imds.Labels, 'Learners', auto_t, 'OptimizeHyperparameters', 'auto', ...
+    'HyperparameterOptimizationOptions', struct('ShowPlots', false, 'Verbose', 0));
+
+auto_pred = predict(auto_model, test_hist);
+auto_acc = sum(auto_pred == imtest.Labels) / length(imtest.Labels);
+fprintf('Skuteczność na teście (Auto-optymalizacja): %.2f%%\n', auto_acc * 100);
 
 %% Funkcje pomocnicze
 

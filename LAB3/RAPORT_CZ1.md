@@ -1,9 +1,11 @@
 ## TWM LAB3 
-### Raport z części 1
+## Raport z Laboratoriów 3 
 * **Bartosz Zaborowski 319996**
 * **Piotr Walczak 315220**
 
 
+
+## Część 1
 
 ### Zadanie 1
 
@@ -92,3 +94,37 @@ W celu dokładnej lokalizacji optymalnego współczynnika regularyzacji, zagęsz
  ### Zadanie 6
 
 Po ponownym wytrenowaniu modelu na pełnym zbiorze uczącym z użyciem optymalnego współczynnika regularyzacji (λ=0.0025), klasyfikator osiągnął 97.14% skuteczności treningowej oraz 86.67% skuteczności testowej. Możemy zauważyć, że spadek skuteczności na zbiorze treningowym przyniósł pożądaną korzyść, w postaci najwyższego dotąd wyniku na zbiorze testowym. Udowadnia to, że regularyzacja L2 z odpowiednio dobranym parametrem skutecznie ograniczyła przeuczenie i poprawiła zdolność modelu do uogólniania wiedzy na nowych danych.
+
+
+## Część 2 - SVM
+
+Otrzymane przez nas wyniki działania skryptu:
+
+```
+Najlepsze parametry: C = 3.162, Gamma = 0.316
+Skuteczność walidacyjna (CV) = 90.00%
+
+Wyniki na zbiorze testowym:
+Mikro-uśredniona skuteczność (Micro-Accuracy): 87.78%
+Makro-uśredniona skuteczność (Macro-Accuracy): 87.78%
+
+Porównanie: Rozpoczynam automatyczną optymalizację MATLABa...
+Skuteczność na teście (Auto-optymalizacja): 87.78%
+```
+
+
+Przeprowadziliśmy przeszukiwanie siatki (Grid Search) z zastosowaniem 5-krotnej walidacji krzyżowej, co pozwoliło na identyfikację optymalnych parametrów dla wieloklasowego klasyfikatora SVM z jądrem Gaussa. 
+
+![](CZ2_WYKRESY/SVM_GridSearch.png)
+
+Uzyskane przez nas wyniki i hiperparametry:
+* Optymalne parametry modelu: $C = 3.162$ oraz $\gamma = 0.316$
+* Skuteczność w kroswalidacji (CV): 90.00%
+* Mikro-uśredniona skuteczność (zb. testowy): 87.78%
+* Makro-uśredniona skuteczność (zb. testowy): 87.78%
+
+Na niezależnym zbiorze testowym zoptymalizowany model uzyskał bardzo dobrą skuteczność na poziomie 87.78%. Wartości mikro i makro uśrednione są ze sobą identyczne, co jest bezpośrednim wynikiem idealnego zbalansowania klas w zbiorze testowym (dokładnie po 30 próbek na każdą klasę). 
+
+![](CZ2_WYKRESY/SVM_ConfusionMatrix.png)
+
+Po przeanalizowaniu macierzy pomyłek doszliśmy do wniosku, że największe trudności sprawiało algorytmowi poprawne sklasyfikowanie obiektów z klasy greenhouse (największe rozproszenie błędów pomiędzy pozostałe klasy), podczas gdy deli oraz bathroom były rozpoznawane z wyższą pewnością. Co istotne, zaimplementowany w ramach zadania proces strojenia parametrów (Grid Search) dał odrobinę lepszy rezultat niż wbudowane narzędzie auto-optymalizacji środowiska MATLAB (85.56%), co udowadnia skuteczność i zasadność ręcznego przeszukiwania przestrzeni hiperparametrów.
