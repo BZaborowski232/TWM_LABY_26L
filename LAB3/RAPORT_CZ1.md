@@ -47,7 +47,7 @@ Generowane były również wykresy odchylenia standardowego:
 ![Odch. stand. skuteczności vs liczba cech](CZ1_WYKRESY/ZAD2_4.png)
 
 
-Analiza wykresów odchylenia standardowego potwierdziła zjawisko przeuczenia. Podczas gdy dla zbioru uczącego odchylenie jest niemal zerowe (model jest stabilny), na zbiorze walidacyjnym po przekroczeniu 14 cech obserwujemy drastyczny wzrost niestabilności (ogromne skoki wariancji funkcji kosztu). Potwierdza to ogromnej wrażliwości przeuczonego modelu na to, jak dokładnie podzielono dane.
+Analiza wykresów odchylenia standardowego potwierdziła zjawisko przeuczenia. Podczas gdy dla zbioru uczącego odchylenie jest niemal zerowe (model jest stabilny), na zbiorze walidacyjnym po przekroczeniu 14 cech obserwujemy drastyczny wzrost niestabilności (ogromne skoki wariancji funkcji kosztu). Potwierdza to wrażliwość przeuczonego modelu na to, jak dokładnie podzielono dane.
 
 
 ### Zadanie 3
@@ -114,6 +114,35 @@ Skuteczność na teście (Auto-optymalizacja): 87.78%
 
 
 Przeprowadziliśmy przeszukiwanie siatki (Grid Search) z zastosowaniem 5-krotnej walidacji krzyżowej, co pozwoliło na identyfikację optymalnych parametrów dla wieloklasowego klasyfikatora SVM z jądrem Gaussa. 
+Poniżej przedstawiono wyniki przeszukiwania siatki (grid search) dla różnych wartości parametrów C oraz γ, wraz z odpowiadającą im skutecznością klasyfikacji uzyskaną w procesie k-krotnej walidacji krzyżowej. Tabelę posortowano malejąco po skuteczności.
+| C       | Gamma    | Accuracy (%) |
+|--------|----------|--------------|
+| 3.1623 | 0.31623  | 90.000       |
+| 17.783 | 10       | 90.000       |
+| 3.1623 | 0.056234 | 88.095       |
+| 3.1623 | 1.7783   | 88.095       |
+| 3.1623 | 0.01     | 87.619       |
+| 3.1623 | 10       | 87.143       |
+| 17.783 | 0.31623  | 87.143       |
+| 100    | 10       | 87.143       |
+| 17.783 | 0.01     | 86.667       |
+| 100    | 0.01     | 85.714       |
+| 100    | 1.7783   | 85.714       |
+| 17.783 | 0.056234 | 85.238       |
+| 17.783 | 1.7783   | 85.238       |
+| 100    | 0.056234 | 85.238       |
+| 100    | 0.31623  | 85.238       |
+| 0.56234| 10       | 77.143       |
+| 0.56234| 1.7783   | 75.714       |
+| 0.56234| 0.31623  | 75.238       |
+| 0.56234| 0.056234 | 50.476       |
+| 0.56234| 0.01     | 47.143       |
+| 0.1    | 0.056234 | 33.333       |
+| 0.1    | 0.01     | 33.333       |
+| 0.1    | 1.7783   | 33.333       |
+| 0.1    | 10       | 33.333       |
+| 0.1    | 0.31623  | 33.333       |
+
 
 ![](CZ2_WYKRESY/SVM_GridSearch.png)
 

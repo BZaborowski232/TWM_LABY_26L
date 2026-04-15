@@ -128,6 +128,22 @@ best_gamma = gamma_vals(best_j);
 
 fprintf('\nNajlepsze parametry: C = %.3f, Gamma = %.3f\nSkuteczność walidacyjna (CV) = %.2f%%\n', best_C, best_gamma, max_acc*100);
 
+% === GENEROWANIE TABELI WYNIKÓW GRID SEARCH ===
+
+[C_grid, gamma_grid] = meshgrid(C_vals, gamma_vals);
+
+results_table = table( ...
+    C_grid(:), ...
+    gamma_grid(:), ...
+    accuracy_matrix(:) * 100, ...
+    'VariableNames', {'C', 'Gamma', 'Accuracy_percent'} ...
+);
+
+% Sortowanie malejąco po skuteczności
+results_table = sortrows(results_table, 'Accuracy_percent', 'descend');
+
+disp('Tabela wyników Grid Search:');
+disp(results_table);
 %% Wykres 3D przestrzeni hiperparametrów
 figure;
 [X, Y] = meshgrid(gamma_vals, C_vals);
