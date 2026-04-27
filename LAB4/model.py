@@ -29,8 +29,7 @@ def generate_model():
     model.add(MaxPooling2D(pool_size=(2, 2)))
     model.add(Dropout(0.25))
 
-    # --- Trzeci blok splotowy (128 filtrów) - DODANY ---
-    # To jest klucz do osiągnięcia >80% dokładności
+    # --- Trzeci blok splotowy (128 filtrów) ----
     model.add(Conv2D(128, (3, 3), padding='same'))
     model.add(BatchNormalization())
     model.add(Activation('relu'))
@@ -50,13 +49,13 @@ def generate_model():
     model.add(Activation('relu'))
     model.add(Dropout(0.5))
     
-    # Warstwa wyjściowa - 10 klas (TYLKO RAZ!)
+    # Warstwa wyjściowa - 10 klas
     model.add(Dense(10))
     model.add(Activation('softmax'))
 
     model.summary()
     
-    adam = tf.optimizers.Adam(learning_rate=0.001)
+    adam = tf.optimizers.Adam(learning_rate=0.0005)
     model.compile(loss='categorical_crossentropy', optimizer=adam, metrics=['accuracy'])
 
     return model
