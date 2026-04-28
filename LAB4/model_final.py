@@ -4,12 +4,12 @@ from keras.layers import Conv2D, MaxPooling2D, Flatten, Dense, Dropout, BatchNor
 
 def generate_model():
     model = Sequential()
-    
+
     model.add(Conv2D(32, (3, 3), padding='same', input_shape=(32, 32, 3)))
     model.add(BatchNormalization())
     model.add(Activation('relu'))
     
-    model.add(Conv2D(32, (3, 3)))
+    model.add(Conv2D(32, (3, 3), padding='same'))
     model.add(BatchNormalization())
     model.add(Activation('relu'))
     
@@ -20,7 +20,7 @@ def generate_model():
     model.add(BatchNormalization())
     model.add(Activation('relu'))
     
-    model.add(Conv2D(64, (3, 3)))
+    model.add(Conv2D(64, (3, 3), padding='same'))
     model.add(BatchNormalization())
     model.add(Activation('relu'))
     
@@ -31,7 +31,7 @@ def generate_model():
     model.add(BatchNormalization())
     model.add(Activation('relu'))
     
-    model.add(Conv2D(128, (3, 3)))
+    model.add(Conv2D(128, (3, 3), padding='same'))  
     model.add(BatchNormalization())
     model.add(Activation('relu'))
     
