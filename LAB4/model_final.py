@@ -45,7 +45,6 @@ def generate_model():
     model.add(Activation('relu'))
     model.add(Dropout(0.5))
     
-    # Warstwa wyjściowa - 10 klas
     model.add(Dense(10))
     model.add(Activation('softmax'))
 
