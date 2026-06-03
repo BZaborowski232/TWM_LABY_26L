@@ -10,7 +10,7 @@ close all;
 % VIDEO
 % ------------------------------------------
 
-vidReader = VideoReader('visiontraffic.avi');
+vidReader = VideoReader('visiontraffic1.mp4');
 
 % ------------------------------------------
 % OPTICAL FLOW
